@@ -1,0 +1,11 @@
+<h1>{{ name }}</h1>
+<p>{{ location }}</p>
+<p>{{ profession }}</p>
+
+{{#with pet}}
+{{> pet}}
+{{/with}}
+
+{{#each pets}}
+  {{> pet}}
+{{/each}}
