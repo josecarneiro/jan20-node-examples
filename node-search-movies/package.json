@@ -1,0 +1,17 @@
+{
+  "name": "node-search-movies",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon app.js -e js,json,hbs,css"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "express": "^4.17.1",
+    "hbs": "^4.1.0"
+  }
+}

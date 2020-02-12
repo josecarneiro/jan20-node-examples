@@ -1,0 +1,15 @@
+<h1>Search results go here</h1>
+
+<ul class="search-results">
+  {{#each results}}
+    <li class="search-result">
+      <a href="/movie/{{ imdbID }}">
+        <img src={{ Poster }} alt={{ Title }} />
+        <div>
+          <h3>{{ Title }}</h3>
+          <span>{{ Year }}</span>
+        </div>
+      </a>
+    </li>
+  {{/each}}
+</ul>

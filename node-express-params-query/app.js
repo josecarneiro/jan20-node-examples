@@ -7,6 +7,14 @@ app.get('/', (request, response) => {
 });
 
 app.get('/about', (request, response) => {
+  const information = request.query;
+
+  console.log(information);
+
+  const foo = request.query.foo;
+
+  console.log(foo);
+
   response.send('A page about me');
 });
 

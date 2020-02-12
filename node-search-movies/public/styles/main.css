@@ -1,0 +1,42 @@
+body {
+  font-family: sans-serif;
+  max-width: 50em;
+  margin: 0 auto;
+}
+
+input,
+button {
+  font: inherit;
+  color: inherit;
+  border: 1px solid grey;
+  padding: 1em;
+}
+
+form {
+  margin: 0 auto;
+}
+
+.search-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.search-results {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.search-result {
+  display: flex;
+  margin-bottom: 1em;
+  align-items: center;
+}
+
+.search-result img {
+  max-width: 10em;
+  margin-right: 1em;
+}
