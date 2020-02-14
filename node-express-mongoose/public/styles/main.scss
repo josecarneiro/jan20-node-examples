@@ -1,0 +1,19 @@
+$green: #5ee65e;
+
+body {
+  font-family: sans-serif;
+  max-width: 50em;
+  margin: 0 auto;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  input {
+    margin-bottom: 1em;
+    border: 2px solid $green;
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}

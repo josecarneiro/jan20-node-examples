@@ -1,0 +1,13 @@
+body {
+  font-family: sans-serif;
+  max-width: 50em;
+  margin: 0 auto; }
+
+form {
+  display: flex;
+  flex-direction: column; }
+  form input {
+    margin-bottom: 1em;
+    border: 2px solid #5ee65e; }
+    form input:last-child {
+      margin-bottom: 0; }

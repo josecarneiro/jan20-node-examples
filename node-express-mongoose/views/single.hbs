@@ -1,3 +1,9 @@
 {{ recipe.title }}
 <br>
 {{ recipe.cuisine }}
+
+<a href="/recipe/{{ recipe._id }}/edit">Edit Recipe</a>
+
+<form action="/recipe/{{ recipe._id }}/delete" method="POST">
+  <button>Delete</button>
+</form>
