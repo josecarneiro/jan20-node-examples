@@ -2,7 +2,6 @@ const dotenv = require('dotenv');
 
 dotenv.config();
 
-const Recipe = require('./models/recipe');
 const express = require('express');
 const nodeSassMiddleware = require('node-sass-middleware');
 const path = require('path');
@@ -26,97 +25,9 @@ app.use(express.static('public'));
 
 app.use(express.urlencoded());
 
-app.get('/', (req, res) => {
-  Recipe.find()
-    .then(recipes => {
-      const data = { recipes };
-      res.render('list', data);
-    })
-    .catch(error => {
-      console.log(error);
-      res.send('Error');
-    });
-});
+const recipeRouter = require('./routers/recipes');
 
-app.get('/recipe/create', (req, res) => {
-  res.render('create');
-});
-
-app.post('/recipe/create', (req, res, next) => {
-  const data = {
-    title: req.body.title,
-    cuisine: req.body.cuisine
-  };
-
-  Recipe.create(data)
-    .then(recipe => {
-      const id = recipe._id;
-      res.redirect(`/recipe/${id}`);
-    })
-    .catch(error => {
-      next(error);
-    });
-});
-
-app.post('/recipe/:id/delete', (req, res, next) => {
-  const id = req.params.id;
-
-  Recipe.findByIdAndDelete(id)
-    .then(recipe => {
-      console.log('Delete recipe', id);
-      res.redirect(`/`);
-    })
-    .catch(error => {
-      next(error);
-    });
-});
-
-app.get('/recipe/:id/edit', (req, res, next) => {
-  const id = req.params.id;
-  Recipe.findById(id)
-    .then(recipe => {
-      if (!recipe) {
-        next(new Error('NOT_FOUND'));
-      } else {
-        const data = { recipe };
-        res.render('edit', data);
-      }
-    })
-    .catch(error => {
-      next(error);
-    });
-});
-
-app.post('/recipe/:id/edit', (req, res, next) => {
-  const id = req.params.id;
-  const data = {
-    title: req.body.title,
-    cuisine: req.body.cuisine
-  };
-  Recipe.findByIdAndUpdate(id, data, { runValidators: true })
-    .then(() => {
-      res.redirect(`/recipe/${id}`);
-    })
-    .catch(error => {
-      next(error);
-    });
-});
-
-app.get('/recipe/:id', (req, res, next) => {
-  const id = req.params.id;
-  Recipe.findById(id)
-    .then(recipe => {
-      if (!recipe) {
-        next(new Error('NOT_FOUND'));
-      } else {
-        const data = { recipe };
-        res.render('single', data);
-      }
-    })
-    .catch(error => {
-      next(error);
-    });
-});
+app.use('/recipe', recipeRouter);
 
 app.use((error, req, res, next) => {
   console.log('Error was caught in catch all handler');
