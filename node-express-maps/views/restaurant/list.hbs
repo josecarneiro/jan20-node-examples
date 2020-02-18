@@ -1,0 +1,50 @@
+<span>Multiple </span>
+
+<div id="sample-map" class="map"></div>
+
+<script>
+  const $sampleMap = document.getElementById('sample-map');
+
+  const list = [
+    {{#each restaurants}}
+      {
+        id: "{{_id}}",
+        position: {
+          lat: {{ location.coordinates.[1] }},
+          lng: {{ location.coordinates.[0] }}
+        }
+      },
+    {{/each}}
+  ];
+
+  function initMap() {
+    const map = new window.google.maps.Map($sampleMap, {
+      center: { lat: 38, lng: -9},
+      zoom : 9
+    });
+
+    map.addListener('click', event => {
+      const latitude = event.latLng.lat();
+      const longitude = event.latLng.lng();
+
+      const $inputLatitude = document.getElementById('input-latitude');
+      const $inputLongitude = document.getElementById('input-longitude');
+
+      $inputLatitude.value = latitude;
+      $inputLongitude.value = longitude;
+    })
+
+    for (restaurant of list) {
+      const marker = new window.google.maps.Marker({
+        position: restaurant.position,
+        map
+      });
+      
+      marker.addListener('click', () => {
+        window.location = `/restaurant/${restaurant.id}`;
+      })
+    }
+  }
+</script>
+
+{{>mapscripts}}

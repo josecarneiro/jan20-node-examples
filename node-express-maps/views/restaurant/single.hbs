@@ -1,0 +1,30 @@
+<h1>{{ restaurant.name }}</h1>
+<span>{{ restaurant.specialty }}</span>
+
+<span>{{ restaurant.location.coordinates.[0] }}</span>
+<span>{{ restaurant.location.coordinates.[1] }}</span>
+
+<div id="sample-map" class="map"></div>
+
+<script>
+  const $sampleMap = document.getElementById('sample-map');
+
+  const position = {
+    lat: {{ restaurant.location.coordinates.[1] }},
+    lng: {{ restaurant.location.coordinates.[0] }}
+  };
+
+  function initMap() {
+    const map = new window.google.maps.Map($sampleMap, {
+      center: position,
+      zoom : 9
+    });
+
+    const marker = new window.google.maps.Marker({
+      position,
+      map
+    })
+  }
+</script>
+
+{{>mapscripts}}
