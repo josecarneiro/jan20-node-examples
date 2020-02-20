@@ -1,7 +1,17 @@
 <form action="/authentication/sign-up" method="POST">
 
+  <label for="input-name">Name</label>
+  <input type="text" id="input-name" name="name" placeholder="Your Name" />
+
   <label for="input-username">Username</label>
   <input type="text" id="input-username" name="username" placeholder="Your Username" />
+
+  <label for="input-role">Role</label>
+  <select name="role" id="input-role">
+    <option value="student">Student</option>
+    <option value="teacher_assistant">Teacher Assistant</option>
+    <option value="lead_teacher">Lead Teacher</option>
+  </select>
 
   <label for="input-password">Password</label>
   <input type="password" name="password" id="input-password" placeholder="A Strong Password" />
